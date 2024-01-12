@@ -76,7 +76,7 @@ const playMusic = (track, pause = false) => {
   currentSong.src = `/${currFolder}/` + track;
   if (!pause) {
     currentSong.play();
-    play.src = "/Project/Music WebSite/image/pause.svg";
+    play.src = "/image/pause.svg";
   }
   document.querySelector(".songInfo").innerHTML = decodeURI(track);
   document.querySelector(".songTime").innerHTML = "00:00";
@@ -85,7 +85,7 @@ const playMusic = (track, pause = false) => {
 // DISPLAY SONG ALBUM
 
 async function displaySongs() {
-  let s = await fetch(`/Project/Music%20WebSite/songs/`);
+  let s = await fetch(`/songs/`);
   let response = await s.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -98,7 +98,7 @@ async function displaySongs() {
     if (e.href.includes("/songs/")) {
       let folder = e.href.split("/").slice(-2)[1];
       let s = await fetch(
-        `/Project/Music%20WebSite/songs/${folder}/info.json`
+        `/${folder}/info.json`
       );
       let response = await s.json();
       cardContainer.innerHTML =
@@ -139,7 +139,7 @@ async function displaySongs() {
   card.forEach((e) => {
     e.addEventListener("click", async (item) => {
       songs = await getSongs(
-        `Project/Music%20WebSite/songs/${item.currentTarget.dataset.folder}`
+        `songs/${item.currentTarget.dataset.folder}`
       );
       playMusic(songs[0])
     });
@@ -147,7 +147,7 @@ async function displaySongs() {
 }
 
 async function main() {
-  songs = await getSongs("Project/Music%20WebSite/songs/PlayList1");
+  songs = await getSongs("songs/PlayList1");
   playMusic(songs[0], true);
 
   // Diplay Almub
@@ -158,10 +158,10 @@ async function main() {
   play.addEventListener("click", () => {
     if (currentSong.paused) {
       currentSong.play();
-      play.src = "/Project/Music WebSite/image/pause.svg";
+      play.src = "/image/pause.svg";
     } else {
       currentSong.pause();
-      play.src = "/Project/Music WebSite/image/play.svg";
+      play.src = "/image/play.svg";
     }
   });
 
