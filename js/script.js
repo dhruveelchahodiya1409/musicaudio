@@ -139,7 +139,7 @@ async function displaySongs() {
   card.forEach((e) => {
     e.addEventListener("click", async (item) => {
       songs = await getSongs(
-        `/songs/${item.currentTarget.dataset.folder}`
+        `songs/${item.currentTarget.dataset.folder}`
       );
       playMusic(songs[0])
     });
@@ -147,7 +147,7 @@ async function displaySongs() {
 }
 
 async function main() {
-  songs = await getSongs("/songs/PlayList1");
+  songs = await getSongs("songs/PlayList1");
   playMusic(songs[0], true);
 
   // Diplay Almub
