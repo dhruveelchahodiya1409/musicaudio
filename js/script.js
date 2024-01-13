@@ -17,7 +17,7 @@ function secondsToMinutesSeconds(seconds) {
 // FETCH ALL SONGS
 async function getSongs(folder) {
   currFolder = folder;
-  let s = await fetch(`/musicaudio/${folder}/`);
+  let s = await fetch(`/${folder}/`);
   
   let response = await s.text();
   console.log(response);
@@ -148,7 +148,7 @@ async function displaySongs() {
 }
 
 async function main() {
-  songs = await getSongs("songs/PlayList1");
+  songs = await getSongs("/musicaudio/songs/PlayList1");
   playMusic(songs[0], true);
 
   // Diplay Almub
