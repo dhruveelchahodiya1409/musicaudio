@@ -86,7 +86,7 @@ const playMusic = (track, pause = false) => {
 // DISPLAY SONG ALBUM
 
 async function displaySongs() {
-  let s = await fetch(`/songs/`);
+  let s = await fetch(`/audio/`);
   let response = await s.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -96,7 +96,7 @@ async function displaySongs() {
 
   for (let index = 0; index < array.length; index++) {
     const e = array[index];
-    if (e.href.includes("/songs/")) {
+    if (e.href.includes("/audio/")) {
       let folder = e.href.split("/").slice(-2)[1];
       let s = await fetch(
         `/${folder}/info.json`
@@ -129,7 +129,7 @@ async function displaySongs() {
           />
         </svg>
       </div>
-      <img class="rounded" src="songs/${folder}/cover.png" alt="Hits" srcset="" />
+      <img class="rounded" src="audio/${folder}/cover.png" alt="Hits" srcset="" />
       <h4>${response.title}</h4>
     </div>`;
     }
@@ -140,7 +140,7 @@ async function displaySongs() {
   card.forEach((e) => {
     e.addEventListener("click", async (item) => {
       songs = await getSongs(
-        `songs/${item.currentTarget.dataset.folder}`
+        `audio/${item.currentTarget.dataset.folder}`
       );
       playMusic(songs[0])
     });
@@ -148,7 +148,7 @@ async function displaySongs() {
 }
 
 async function main() {
-  songs = await getSongs("musicaudio/songs/PlayList1");
+  songs = await getSongs("musicaudio/audio/PlayList1");
   playMusic(songs[0], true);
 
   // Diplay Almub
