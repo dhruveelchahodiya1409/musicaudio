@@ -148,7 +148,7 @@ async function displaySongs() {
 }
 
 async function main() {
-  songs = await getSongs("/musicaudio/songs/PlayList1");
+  songs = await getSongs("musicaudio/songs/PlayList1");
   playMusic(songs[0], true);
 
   // Diplay Almub
